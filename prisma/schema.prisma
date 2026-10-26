@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PlacementDrive {
+  id             String   @id @default(cuid())
+  companyName    String
+  role           String
+  driveDate      DateTime
+  eligibleBranch String
+  minCGPA        Float?
+  jobType        String?
+
+  // New drives remain unpublished until the admin publishes them.
+  status String @default("DRAFT")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // One drive can have many student applications.
+  applications StudentApplication[]
+}
+
+model StudentApplication {
+  id               String @id @default(cuid())
+  studentName      String
+  email            String
+  course           String
+  studyYear        String
+  branch           String
+  cgpa             Float
+  preferredDomain  String
+  placementDriveId String
+
+  // This is the application status, not the drive's draft status.
+  status String @default("REGISTERED")
+
+  createdAt DateTime @default(now())
+
+  placementDrive PlacementDrive @relation(fields: [placementDriveId], references: [id], onDelete: Cascade)
+
+  // A student can register only once per drive using the same email.
+  @@unique([email, placementDriveId])
+}
