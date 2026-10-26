@@ -313,3 +313,20 @@ GitHub: https://github.com/simxr17kaur-coder/tnp-placement-drive-manager
 ## License
 
 No license has been specified yet. Add a license if you intend to grant others explicit permission to use, modify, or redistribute the project.
+
+## 📸 Project Screenshots
+
+### 1. Home Page
+![TNP Placement Drive Manager Home Page](screenshots/home.png)
+
+### 2. Student Portal
+![Student Portal](screenshots/student-portal.png)
+
+### 3. Admin Login
+![Admin Login](screenshots/admin-login.png)
+
+### 4. Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### 5. Student Registration
+![Student Registration Form](screenshots/student-registration.png)
